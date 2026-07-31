@@ -129,7 +129,9 @@ export async function renderBody(container) {
     </div>
   `;
 
-  document.getElementById('bwForm').addEventListener('submit', async e => {
+  // Guarded: renderBody awaits its data, so a fast navigate-away can replace
+  // the container before we get here. Without ?. that throws on null.
+  document.getElementById('bwForm')?.addEventListener('submit', async e => {
     e.preventDefault();
     const form   = e.target;
     const date   = form.querySelector('[name="date"]').value;
@@ -144,7 +146,7 @@ export async function renderBody(container) {
     renderBody(container);
   });
 
-  document.getElementById('measureForm').addEventListener('submit', async e => {
+  document.getElementById('measureForm')?.addEventListener('submit', async e => {
     e.preventDefault();
     const form = e.target;
     const date = form.querySelector('[name="date"]').value;

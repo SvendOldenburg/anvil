@@ -159,7 +159,7 @@ function wireForm(container) {
     if (setsEl.querySelectorAll('.set-row').length > 1) e.target.closest('.set-row').remove();
   });
 
-  document.getElementById('addSetBtn').addEventListener('click', () => {
+  document.getElementById('addSetBtn')?.addEventListener('click', () => {
     const div = document.createElement('div');
     div.innerHTML = makeSetRow(setIdx++);
     const el = div.firstElementChild;
@@ -169,7 +169,7 @@ function wireForm(container) {
     });
   });
 
-  document.getElementById('kbForm').addEventListener('submit', async e => {
+  document.getElementById('kbForm')?.addEventListener('submit', async e => {
     e.preventDefault();
     const form     = e.target;
     const exercise = form.querySelector('[name="exercise"]').value;

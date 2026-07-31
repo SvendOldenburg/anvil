@@ -156,7 +156,7 @@ function wireForm(container) {
     if (setsEl.querySelectorAll('.set-row').length > 1) e.target.closest('.set-row').remove();
   });
 
-  document.getElementById('bbAddSetBtn').addEventListener('click', () => {
+  document.getElementById('bbAddSetBtn')?.addEventListener('click', () => {
     const div = document.createElement('div');
     div.innerHTML = makeSetRow(setIdx++);
     const el = div.firstElementChild;
@@ -166,7 +166,7 @@ function wireForm(container) {
     });
   });
 
-  document.getElementById('bbForm').addEventListener('submit', async e => {
+  document.getElementById('bbForm')?.addEventListener('submit', async e => {
     e.preventDefault();
     const form     = e.target;
     const exercise = form.querySelector('[name="exercise"]').value;

@@ -1,6 +1,6 @@
 // App-shell cache. Training data always comes live from PocketBase
 // (cross-origin, never cached here). Bump CACHE on any frontend change.
-const CACHE = 'anvil-v2';
+const CACHE = 'anvil-v3';
 const SHELL = [
   './',
   './index.html',
