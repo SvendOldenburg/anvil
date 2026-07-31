@@ -1,7 +1,69 @@
-const PB = 'https://pb.aetheriumforge.cloud';
+import { PB_URL as PB } from './config.js';
+
+// --- Auth (the shared PocketBase `users` account, same as Vessel and Lumen) ---
+
+let _token = null;
+
+export async function login(email, password) {
+  const res = await fetch(`${PB}/api/collections/users/auth-with-password`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ identity: email, password }),
+  });
+  if (!res.ok) throw new Error('Login failed');
+  const data = await res.json();
+  _token = data.token;
+  localStorage.setItem('anvil_token', _token);
+  return data;
+}
+
+export function logout() {
+  _token = null;
+  localStorage.removeItem('anvil_token');
+}
+
+// Validate the stored token against the server and renew it. Returns true
+// if we have a usable session. A stored token that only *exists* isn't
+// enough -- if it has expired, every read comes back empty and every save
+// 400s, with no login prompt. (That's the 2026-07-07 Vessel bug: the phone
+// PWA silently stopped working, and reinstalling didn't help because
+// localStorage survives a home-screen delete.) So we refresh on boot: a
+// good token gets a fresh TTL, a dead one gets cleared so login shows.
+export async function restoreSession() {
+  _token = localStorage.getItem('anvil_token');
+  if (!_token) return false;
+  try {
+    const res = await fetch(`${PB}/api/collections/users/auth-refresh`, {
+      method: 'POST',
+      headers: authHeaders(),
+    });
+    if (res.ok) {
+      const data = await res.json();
+      _token = data.token;
+      localStorage.setItem('anvil_token', _token);
+      return true;
+    }
+    // 400/401/403 = the server rejected the token. It's dead -- force re-login.
+    if (res.status >= 400 && res.status < 500) {
+      logout();
+      return false;
+    }
+    // Server-side (5xx) hiccup -- keep the token and let the app try.
+    return true;
+  } catch {
+    // Network failure (offline) -- keep the token so offline use still works.
+    return true;
+  }
+}
+
+function authHeaders() {
+  return _token ? { 'Authorization': `Bearer ${_token}` } : {};
+}
+
+// --- Records ---
 
 async function pbReq(method, path, body) {
-  const opts = { method, headers: {} };
+  const opts = { method, headers: { ...authHeaders() } };
   if (body) {
     opts.headers['Content-Type'] = 'application/json';
     opts.body = JSON.stringify(body);

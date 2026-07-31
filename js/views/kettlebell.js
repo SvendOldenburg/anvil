@@ -1,5 +1,5 @@
 import { api } from '../api.js';
-import { KB_EXERCISES } from '../db.js';
+import { KB_EXERCISES } from '../exercises.js';
 
 function today() {
   return new Date().toISOString().slice(0, 10);

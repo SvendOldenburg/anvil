@@ -1,0 +1,9 @@
+tools/.env
+__pycache__/
+*.pyc
+mcp/node_modules/
+.DS_Store
+Thumbs.db
+node_modules/
+test-results/
+playwright-report/

@@ -720,7 +720,57 @@ body {
 }
 .measure-chip strong { color: var(--text); }
 
+/* ─── Auth screen ────────────────────────────────────────────────────────── */
+.auth-screen {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.auth-inner {
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+}
+
+.auth-mark {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+  margin-bottom: 18px;
+}
+
+.auth-title {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.auth-sub {
+  color: var(--text-2);
+  font-size: 14px;
+  margin-top: 6px;
+  margin-bottom: 28px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+
+.auth-error {
+  color: var(--danger);
+  font-size: 13px;
+  text-align: center;
+  margin-top: 2px;
+}
+
 /* ─── Utility ────────────────────────────────────────────────────────────── */
+.hidden { display: none; }
 .mt-2 { margin-top: 8px; }
 .mt-3 { margin-top: 12px; }
 .mt-4 { margin-top: 16px; }

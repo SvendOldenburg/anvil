@@ -1,0 +1,24 @@
+{
+  "name": "anvil",
+  "version": "1.0.0",
+  "description": "Personal training log. StrongLifts 5x5, rower, kettlebell, barbell, dumbbell, body.",
+  "main": "sw.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SvendOldenburg/training-tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/SvendOldenburg/training-tracker/issues"
+  },
+  "homepage": "https://github.com/SvendOldenburg/training-tracker#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.62.1"
+  }
+}

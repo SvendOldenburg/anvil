@@ -1,4 +1,4 @@
-import { WORKOUTS } from '../db.js';
+import { WORKOUTS } from '../exercises.js';
 import { api, getSetting } from '../api.js';
 import { show as showTimer } from '../timer.js';
 

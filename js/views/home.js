@@ -25,7 +25,7 @@ export async function renderHome(container) {
 
   container.innerHTML = `
     <div class="view">
-      <div class="view-title">Train</div>
+      <div class="view-title">Anvil</div>
 
       <div class="stats-row">
         <div class="card">
@@ -82,6 +82,8 @@ export async function renderHome(container) {
             }).join('')}
           </div>`
       }
+
+      <button class="btn btn-outline mt-4" id="signOut">Sign out</button>
     </div>
   `;
 }
